@@ -570,7 +570,7 @@ Nombre completo: Roberto Vargas, Número de cédula: 113090279, Prioridad: 2]
 Siguiente cliente a ser atendido: Jorge Castillo
 ```
 Se confirma que el inventario actualizado muestra el nombre de los productos, acompañados de sus precios unitarios, sus cantidades disponibles y el monto total actualizado asociado a dicha cantidad de productos.
-Además se muestra que hay tres clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad se ha actualizado.
+Además se muestra que hay tres clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad, se ha actualizado.
 
 #### Paso 5. Cerrar el programa
 El usuario selecciona la opción 0 del menú con el fin de cerrar el programa.
