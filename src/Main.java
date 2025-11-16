@@ -31,7 +31,7 @@ public class Main {
     }
 
     public static void procesarOpcion(byte opcion, Tienda tienda) throws Exception {
-        boolean debug = true;
+        boolean debug = false;
 
         if (debug) {
             //Insertar productos al inventario
@@ -153,43 +153,5 @@ public class Main {
 
         //Ejecutar el menú principal
         menuPrincipal(miTienda);
-
-
-
-
-
-
-
-
-
-
-
-
-        //Crear una tienda
-        /*Tienda miTienda = new Tienda();
-
-        //Imprimir reporte del inventario
-        miTienda.getInventario().reportar();
-
-        //Insertar producto en inventario vacío
-        miTienda.getInventario().insertar("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
-        miTienda.getInventario().insertar("Thriller", 19635.0f, "Pop", "1982", 15);
-        miTienda.getInventario().insertar("Nevermind", 7052.5f, "Grunge", "1991", 20);
-
-        //Agregar rutas a imágenes de un álbum
-        miTienda.getInventario().agregar("Nevermind", "../img/nevermind_front.jpg");
-        miTienda.getInventario().agregar("Nevermind", "../img/nevermind_back.jpg");
-        miTienda.getInventario().agregar("Thriller", "../img/thriller_front.jpg");
-        miTienda.getInventario().agregar("Thriller", "../img/thriller_back.jpg");
-        miTienda.getInventario().agregar("Sgt. Pepper's Lonely Hearts Club Band", "../img/sgtpepperslonelyheartsclubband_front.jpg");
-        miTienda.getInventario().agregar("Sgt. Pepper's Lonely Hearts Club Band", "../img/sgtpepperslonelyheartsclubband.jpg");
-
-        //Imprimir toda la información de un producto existente
-        miTienda.getInventario().detalle("Nevermind");
-        miTienda.getInventario().detalle("Thriller");
-        miTienda.getInventario().detalle("Sgt. Pepper's Lonely Hearts Club Band");
-
-        //Imprimir reporte del inventario
-        miTienda.getInventario().reportar();*/
     }
 }
