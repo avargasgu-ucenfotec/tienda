@@ -21,7 +21,75 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [ ] El **menu()** debe permitir la inserción de **Productos** al **inventario** de la **Tienda**.
 - [ ] El **menu()** debe permitir la inserción de **Clientes** en la **ColaClientes** (la cual implica el llenado de su **carrito** a partir de lo que hay disponible en el **inventario**).
 - [ ] El **menu()** debe permitir la atención del siguiente **Cliente** (lo cual implica la impresión de un reporte que represente la factura asociada con su **carrito**, incluyendo su costo total acumulado).
-- [ ] El **menu()** se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
+- [x] El **menu()** se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
 
 ## Casos de prueba
 ### Caso 1. Visualizar el estado inicial del sistema
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado inicial de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| N/A                                      | 0.0        | 0        | 0.0        |
++------------------------------------------+------------+----------+------------+
+
+Clientes en espera: []
+Siguiente cliente a ser atendido: No hay clientes en la cola.
+```
+Se confirma que el inventario está vacío y no hay clientes en la cola de espera.
+
+### Caso 2. El menú debe permitir la inserción de productos al inventario de la tienda
+El usuario selecciona la opción 1 del menú con el fin de ingresar los datos asociados al producto que desea insertar al inventario.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 1
+```
+```
+Ingrese el título del álbum: Thriller
+Ingrese el precio unitario del álbum: 19635.0f
+Ingrese el género musical del álbum: Pop
+Ingrese la fecha de lanzamiento del álbum: 1982
+Ingrese la cantidad de unidades del álbum: 15
+```
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado actual de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Thriller                                 | 19635.0    | 15       | 294525.0   |
++------------------------------------------+------------+----------+------------+
+
+Clientes en espera: []
+Siguiente cliente a ser atendido: No hay clientes en la cola.
+```
+Se confirma que el inventario muestra el producto.
