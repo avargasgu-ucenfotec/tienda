@@ -396,7 +396,7 @@ Nombre completo: Laura Retana, Número de cédula: 214100380, Prioridad: 3]
 Siguiente cliente a ser atendido: Roberto Vargas
 ```
 Se confirma que el inventario actualiza las cantidades disponibles y el monto total.
-Además se muestra que hay dos clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad no cambia.
+Además se muestra que hay dos clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad, no cambia.
 
 El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al tercer cliente, así como el producto que se desea comprar.
 ```
@@ -452,7 +452,7 @@ Nombre completo: Roberto Vargas, Número de cédula: 113090279, Prioridad: 2]
 Siguiente cliente a ser atendido: Patricia Guevara
 ```
 Se confirma que el inventario actualiza las cantidades disponibles y el monto total.
-Además se muestra que hay tres clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad ha cambiado.
+Además se muestra que hay tres clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad, ha cambiado.
 
 El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al cuarto cliente, así como el producto que se desea comprar.
 ```
@@ -509,7 +509,7 @@ Nombre completo: Laura Retana, Número de cédula: 214100380, Prioridad: 3]
 Siguiente cliente a ser atendido: Patricia Guevara
 ```
 Se confirma que el inventario actualiza las cantidades disponibles y el monto total.
-Además se muestra que hay cuatro clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad no ha cambiado.
+Además se muestra que hay cuatro clientes en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad, no ha cambiado.
 
 #### Paso 4. Atención del cliente en la cola
 El usuario selecciona la opción 3 del menú con el fin de concretar la compra y desplegar la factura correspondiente.
