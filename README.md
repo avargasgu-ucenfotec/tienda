@@ -18,13 +18,14 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [ ] La clase **ColaClientes** debe implementarse como una cola de prioridad, para lo cual cada **Cliente** debe tener un atributo **prioridad** que indica, mediante un número entero entre el **1** y el **3**, el grado de prioridad asignado a su atención: **1** para **Clientes** básicos, **2** para **Clientes** afiliados a la **Tienda** y **3** para **Clientes** premium. A la hora de procesar la atención de un **Cliente**, quien debe ser atendido es el **Cliente** que tenga una **prioridad** más alta de los que actualmente están en la cola.
 - [ ] La **Tienda** debe tener un atributo que se un objeto de la clase **ColaClientes**.
 - [ ] Además de todas las clases de entidad requeridas para la implementación de la aplicación, de acuerdo con el alcance indicado hasta este punto, cada grupo debe desarrollar un **menu()** de consola dentro de una clase funcional que permita interactuar con el programa de forma intuitiva y amigable con el usuario.
-- [ ] El **menu()** debe permitir la inserción de **Productos** al **inventario** de la **Tienda**.
-- [ ] El **menu()** debe permitir la inserción de **Clientes** en la **ColaClientes** (la cual implica el llenado de su **carrito** a partir de lo que hay disponible en el **inventario**).
-- [ ] El **menu()** debe permitir la atención del siguiente **Cliente** (lo cual implica la impresión de un reporte que represente la factura asociada con su **carrito**, incluyendo su costo total acumulado).
+- [x] El **menu()** debe permitir la inserción de **Productos** al **inventario** de la **Tienda**.
+- [x] El **menu()** debe permitir la inserción de **Clientes** en la **ColaClientes** (la cual implica el llenado de su **carrito** a partir de lo que hay disponible en el **inventario**).
+- [x] El **menu()** debe permitir la atención del siguiente **Cliente** (lo cual implica la impresión de un reporte que represente la factura asociada con su **carrito**, incluyendo su costo total acumulado).
 - [x] El **menu()** se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
 
 ## Casos de prueba
-### Caso 1. Visualizar el estado inicial del sistema
+### Flujo 1. Insertar un producto a un inventario vacío, insertar un cliente a la cola y concretar la compra de un producto
+#### Paso 1. Visualizar del estado inicial del sistema
 El usuario selecciona la opción 4 del menú con el fin de visualizar el estado inicial de la tienda.
 ```
  --- Menú principal ---
@@ -50,7 +51,7 @@ Siguiente cliente a ser atendido: No hay clientes en la cola.
 ```
 Se confirma que el inventario está vacío y no hay clientes en la cola de espera.
 
-### Caso 2. El menú debe permitir la inserción de productos al inventario de la tienda
+#### Paso 2. Inserción de un producto al inventario de la tienda
 El usuario selecciona la opción 1 del menú con el fin de ingresar los datos asociados al producto que desea insertar al inventario.
 ```
  --- Menú principal ---
@@ -64,7 +65,7 @@ Seleccione una opción del menú: 1
 ```
 ```
 Ingrese el título del álbum: Thriller
-Ingrese el precio unitario del álbum: 19635.0f
+Ingrese el precio unitario del álbum: 19635.0
 Ingrese el género musical del álbum: Pop
 Ingrese la fecha de lanzamiento del álbum: 1982
 Ingrese la cantidad de unidades del álbum: 15
@@ -92,4 +93,103 @@ Seleccione una opción del menú: 4
 Clientes en espera: []
 Siguiente cliente a ser atendido: No hay clientes en la cola.
 ```
-Se confirma que el inventario muestra el producto.
+Se confirma que el inventario muestra el nombre producto, acompañado de su precio unitario, su cantidad disponible y el monto total asociado a dicha cantidad de productos.
+
+#### Paso 3. Inserción de un cliente en la cola
+El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al cliente, así como el producto que se desea comprar.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 2
+```
+```
+Ingrese el nombre del cliente: Roberto Vargas
+Ingrese el número de cédula del cliente: 113090279
+Ingrese la prioridad del cliente [1/2/3]: 1
+Ingrese el nombre de álbum que desea agregar al carrito: Thriller
+Ingrese la cantidad de álbumes que desea adquirir: 2
+¿Desea agregar otro producto a su carrito de compras? [si/no] no
+```
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado actual de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Thriller                                 | 19635.0    | 13       | 255255.0   |
++------------------------------------------+------------+----------+------------+
+
+Clientes en espera: [
+Nombre completo: Roberto Vargas, Número de cédula: 113090279, Prioridad: 1]
+Siguiente cliente a ser atendido: Roberto Vargas
+```
+Se confirma que el inventario muestra el nombre producto, acompañado de su precio unitario, su cantidad disponible actualizada y el monto total actualizado asociado a dicha cantidad de productos.
+Además se muestra que hay un cliente en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad.
+
+#### Paso 4. Atención del cliente en la cola
+El usuario selecciona la opción 3 del menú con el fin de concretar la compra y desplegar la factura correspondiente.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 3
+```
+```
+Atendiendo al cliente: Roberto Vargas
++------------------------------------------+------------+----------+------------+
+| Factura                                  |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Thriller                                 | 19635.0    | 2        | 39270.0    |
++------------------------------------------+------------+----------+------------+
+|                                          |            |          | 39270.0    |
++------------------------------------------+------------+----------+------------+
+```
+Se confirma que la factura muestra el nombre producto, acompañado de su precio unitario, y el monto total de la compra.
+
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado actual de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Thriller                                 | 19635.0    | 13       | 255255.0   |
++------------------------------------------+------------+----------+------------+
+
+Clientes en espera: []
+Siguiente cliente a ser atendido: No hay clientes en la cola.
+```
+Se confirma que el inventario muestra el nombre producto, acompañado de su precio unitario, su cantidad disponible actualizada y el monto total actualizado asociado a dicha cantidad de productos.
+Además se muestra que no hay clientes en la cola.
