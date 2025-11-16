@@ -22,3 +22,6 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [ ] El **menu()** debe permitir la inserción de **Clientes** en la **ColaClientes** (la cual implica el llenado de su **carrito** a partir de lo que hay disponible en el **inventario**).
 - [ ] El **menu()** debe permitir la atención del siguiente **Cliente** (lo cual implica la impresión de un reporte que represente la factura asociada con su **carrito**, incluyendo su costo total acumulado).
 - [ ] El **menu()** se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
+
+## Casos de prueba
+### Caso 1. Visualizar el estado inicial del sistema
