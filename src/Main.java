@@ -38,6 +38,8 @@ public class Main {
             tienda.getInventario().insertar("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
             tienda.getInventario().insertar("Thriller", 19635.0f, "Pop", "1982", 15);
             tienda.getInventario().insertar("Nevermind", 7052.5f, "Grunge", "1991", 20);
+            tienda.getInventario().insertar("The Number of the Beast", 5500.9f, "Metal", "1982", 5);
+            tienda.getInventario().insertar("Kind of Blue", 3000.7f, "Jazz", "1959", 35);
         }
 
         switch (opcion) {
