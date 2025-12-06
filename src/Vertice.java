@@ -3,8 +3,8 @@ class Vertice {
     //Clase "Vertice" que representa una ubicación en un mapa.
 
     //Atributos
-    private String nombre;  //Nombre de la ubicación
-    private int distancia;  //Distancia, en kilómetros, entre dos ubicaciones
+    private final String nombre;  //Nombre de la ubicación
+    private final int distancia;  //Distancia, en kilómetros, entre dos ubicaciones
 
     //Métodos
     //Constructor
