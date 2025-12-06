@@ -27,7 +27,7 @@ public class Grafo {
 
     public void mostrarGrafo() {
         for (Map.Entry<String, List<Arista>> entry : listaAdyacencia.entrySet()) {
-            System.out.print(entry.getKey() + "->");
+            System.out.print(entry.getKey() + " -> ");
             for (Arista arista : entry.getValue()) {
                 System.out.print(arista.getDestino() + " ");
             }

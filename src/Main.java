@@ -6,7 +6,7 @@ public class Main {
 
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void menuPrincipal(Tienda tienda) throws Exception {
+    public static void menuPrincipal(Tienda tienda, Grafo grafo) throws Exception {
         byte opcion = -1;
 
         do {
@@ -15,6 +15,9 @@ public class Main {
             System.out.println("[ 2] Insertar cliente a la cola");
             System.out.println("[ 3] Atender cliente");
             System.out.println("[ 4] Imprimir estado de la tienda");
+            System.out.println("[ 5] Insertar ubicación");
+            System.out.println("[ 6] Insertar camino entre dos ubicaciones");
+            System.out.println("[ 7] Imprimir rutas");
             System.out.println("[ 0] Salir");
             System.out.print("\nSeleccione una opción del menú: ");
             try {
@@ -22,7 +25,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Lo sentimos, estamos experimentando problemas técnicos.");
             }
-            procesarOpcion(opcion, tienda);
+            procesarOpcion(opcion, tienda, grafo);
         } while (opcion != 0);
     }
 
@@ -30,8 +33,8 @@ public class Main {
         return in.readLine();
     }
 
-    public static void procesarOpcion(byte opcion, Tienda tienda) throws Exception {
-        boolean debug = false;
+    public static void procesarOpcion(byte opcion, Tienda tienda, Grafo grafo) throws Exception {
+        boolean debug = true;
 
         if (debug) {
             //Insertar productos al inventario
@@ -40,6 +43,22 @@ public class Main {
             tienda.getInventario().insertar("Nevermind", 7052.5f, "Grunge", "1991", 20);
             tienda.getInventario().insertar("The Number of the Beast", 5500.9f, "Metal", "1982", 5);
             tienda.getInventario().insertar("Kind of Blue", 3000.7f, "Jazz", "1959", 35);
+
+            //Agregar vértices
+            grafo.agregarVertice("San José");
+            grafo.agregarVertice("Alajuela");
+            grafo.agregarVertice("Cartago");
+            grafo.agregarVertice("Heredia");
+            grafo.agregarVertice("Guanacaste");
+
+            //Agregar aristas
+            grafo.agregarArista("San José", "Alajuela", 17);
+            grafo.agregarArista("San José", "Cartago", 40);
+            grafo.agregarArista("Alajuela", "Cartago", 60);
+            grafo.agregarArista("Alajuela", "Heredia", 10);
+            grafo.agregarArista("Cartago", "Heredia", 49);
+            grafo.agregarArista("Cartago", "Guanacaste", 197);
+            grafo.agregarArista("Heredia", "Guanacaste", 147);
         }
 
         switch (opcion) {
@@ -55,6 +74,15 @@ public class Main {
             case 4:
                 tienda.getInventario().reportar();
                 tienda.getCola().imprimirCola();
+                break;
+            case 5:
+                insertarVertice(grafo);
+                break;
+            case 6:
+                insertarArista(grafo);
+                break;
+            case 7:
+                grafo.mostrarGrafo();
                 break;
             case 0:
                 System.out.println("Cerrando el programa...");
@@ -146,12 +174,39 @@ public class Main {
         cliente.facturar();
     }
 
+    public static void insertarVertice(Grafo grafo) throws Exception {
+        String vertice;
+
+        System.out.print("Ingrese el nombre de la ubicación: ");
+        vertice = leerTexto();
+
+        grafo.agregarVertice(vertice);
+    }
+
+    public static void insertarArista(Grafo grafo) throws Exception {
+        String origen;
+        String destino;
+        int peso;
+
+        System.out.print("Ingrese el nombre de la ubicación origen: ");
+        origen = leerTexto();
+        System.out.print("Ingrese el nombre de la ubicación destino: ");
+        destino = leerTexto();
+        System.out.print("Ingrese la distancia entre ambas ubicaciones: ");
+        peso = Integer.parseInt(leerTexto());
+
+        grafo.agregarArista(origen, destino, peso);
+    }
+
     public static void main(String[] args) throws Exception {
 
         //Inicializar tienda
         Tienda miTienda = new Tienda();
 
+        //Inicializar grafo
+        Grafo miGrafo = new Grafo();
+
         //Ejecutar el menú principal
-        menuPrincipal(miTienda);
+        menuPrincipal(miTienda, miGrafo);
     }
 }
