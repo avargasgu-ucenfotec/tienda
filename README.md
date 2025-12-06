@@ -23,6 +23,13 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [x] El **menu()** debe permitir la atención del siguiente **Cliente** (lo cual implica la impresión de un reporte que represente la factura asociada con su **carrito**, incluyendo su costo total acumulado).
 - [x] El **menu()** se debe alojar dentro de la clase **Main** del programa, donde también debe estar la rutina **main()** que lo invoque y lo haga funcionar correctamente.
 
+## Avance final
+### Requerimientos
+- [ ] Agregar un **Grafo** ponderado y no dirigido que almacene una serie de **ubicaciones** haciendo el papel de vértices y los **pesos** de las aristas que las unen (que corresponden a la distancia que hay entre las ubicaciones).
+- [ ] Tanto la **Tienda** como los **Clientes** deben tener una **ubicación**, de modo que cuando el siguiente **Cliente** en ser atendido sea atendido, junto con el reporte de su factura que se debe imprimir en pantalla se indique también el camino más corto entre su **ubicación** y la de la **Tienda**, determinado mediante el algoritmo de búsqueda de caminos de Dijkstra, así como la distancia asociada con dicho camino.
+- [ ] Como parte de la gestión necesaria del **Grafo** debe ser posible desde el **menu()** del programa la inserción de nuevos vértices y aristas.
+- [ ] Se debe tener una lógica de verificación, a la hora de atender al siguiente **Cliente** de la cola, de modo que dicha operación no sea posible si la **ubicación** del **Cliente** (la cuál se debe agregar como vértice al **Grafo** de forma automática cuando éste es insertado en la **ColaClientes**) está desconectada del resto de la estructura.
+
 ## Casos de prueba
 ### Flujo 1. Insertar un producto a un inventario vacío, insertar un cliente a la cola y concretar la compra asociada al único cliente en la cola
 #### Paso 1. Visualizar del estado inicial del sistema
