@@ -73,6 +73,7 @@ public class Main {
                 break;
             case 4:
                 tienda.getInventario().reportar();
+                System.out.println("Punto de partida de los productos: " + tienda.getUbicacion() + "\n");
                 tienda.getCola().imprimirCola();
                 break;
             case 5:
@@ -117,6 +118,7 @@ public class Main {
     public static void insertarCliente(Tienda tienda) throws Exception {
         String nombre;
         String cedula;
+        String ubicacion;
         int prioridad;
 
         String nombreAlbum;
@@ -129,11 +131,13 @@ public class Main {
         nombre = leerTexto();
         System.out.print("Ingrese el número de cédula del cliente: ");
         cedula = leerTexto();
+        System.out.print("Ingrese la ubicación del cliente: ");
+        ubicacion = leerTexto();
         System.out.print("Ingrese la prioridad del cliente [1/2/3]: ");
         prioridad = Integer.parseInt(leerTexto());
 
         //Instanciar cliente
-        Cliente cliente = new Cliente(nombre, cedula, prioridad);
+        Cliente cliente = new Cliente(nombre, cedula, ubicacion, prioridad);
 
         //Obtener lo detalles de la compra del cliente
         do {
@@ -205,6 +209,9 @@ public class Main {
 
         //Inicializar grafo
         Grafo miGrafo = new Grafo();
+
+        //Definir ubicación de la tienda
+        miTienda.setUbicacion("San José");
 
         //Ejecutar el menú principal
         menuPrincipal(miTienda, miGrafo);

@@ -19,8 +19,8 @@ public class ColaPrioridad {
     }
 
     //Agregar cliente a la cola
-    public void agregarCliente(String nombre, String cedula, int prioridad) {
-        Cliente cliente = new Cliente(nombre, cedula, prioridad);
+    public void agregarCliente(String nombre, String cedula, String ubicacion, int prioridad) {
+        Cliente cliente = new Cliente(nombre, cedula, ubicacion, prioridad);
         cola.add(cliente);
     }
 

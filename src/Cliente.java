@@ -5,14 +5,16 @@ public class Cliente implements Comparable<Cliente> {
     //Atributos
     private String nombre;      //Nombre completo del cliente
     private String cedula;      //Número de cédula del cliente
+    private String ubicacion;   //Ubicación de entrega de los productos
     private int prioridad;      //Grado de prioridad asignado a su atención
     private final Carrito carrito;    //Carrito de compras del cliente
 
     //Métodos
     //Constructor
-    public Cliente(String nombre, String cedula, int prioridad) {
+    public Cliente(String nombre, String cedula, String ubicacion, int prioridad) {
         this.nombre = nombre;
         this.cedula = cedula;
+        this.ubicacion = ubicacion;
         this.prioridad = prioridad;
         this.carrito = new Carrito();
     }
@@ -26,6 +28,10 @@ public class Cliente implements Comparable<Cliente> {
         return cedula;
     }
 
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
     public int getPrioridad() {
         return prioridad;
     }
@@ -37,6 +43,10 @@ public class Cliente implements Comparable<Cliente> {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public void setPrioridad(int prioridad) {
@@ -62,6 +72,7 @@ public class Cliente implements Comparable<Cliente> {
     public String toString(){
         return "\nNombre completo: " + nombre +
                 ", Número de cédula: " + cedula +
+                ", Ubicación: " + ubicacion +
                 ", Prioridad: " + prioridad;
     }
 
