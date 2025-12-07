@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -34,33 +37,6 @@ public class Main {
     }
 
     public static void procesarOpcion(byte opcion, Tienda tienda, Grafo grafo) throws Exception {
-        boolean debug = true;
-
-        if (debug) {
-            //Insertar productos al inventario
-            tienda.getInventario().insertar("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
-            tienda.getInventario().insertar("Thriller", 19635.0f, "Pop", "1982", 15);
-            tienda.getInventario().insertar("Nevermind", 7052.5f, "Grunge", "1991", 20);
-            tienda.getInventario().insertar("The Number of the Beast", 5500.9f, "Metal", "1982", 5);
-            tienda.getInventario().insertar("Kind of Blue", 3000.7f, "Jazz", "1959", 35);
-
-            //Agregar vértices
-            grafo.agregarVertice("San José");
-            grafo.agregarVertice("Alajuela");
-            grafo.agregarVertice("Cartago");
-            grafo.agregarVertice("Heredia");
-            grafo.agregarVertice("Guanacaste");
-
-            //Agregar aristas
-            grafo.agregarArista("San José", "Alajuela", 17);
-            grafo.agregarArista("San José", "Cartago", 40);
-            grafo.agregarArista("Alajuela", "Cartago", 60);
-            grafo.agregarArista("Alajuela", "Heredia", 10);
-            grafo.agregarArista("Cartago", "Heredia", 49);
-            grafo.agregarArista("Cartago", "Guanacaste", 197);
-            grafo.agregarArista("Heredia", "Guanacaste", 147);
-        }
-
         switch (opcion) {
             case 1:
                 insertarProducto(tienda);
@@ -69,6 +45,7 @@ public class Main {
                 insertarCliente(tienda);
                 break;
             case 3:
+                calcularRuta(tienda, grafo);
                 atenderCliente(tienda);
                 break;
             case 4:
@@ -169,12 +146,35 @@ public class Main {
         tienda.getCola().agregarCliente(cliente);
     }
 
+    public static void calcularRuta(Tienda tienda, Grafo grafo) {
+        Map<String, Integer> distancias = new HashMap<>();
+        Map<String, String> predecesores = new HashMap<>();
+        //int distanciaTotal = 0;
+
+        System.out.println("\n --- Datos de la entrega ---");
+        System.out.print("Ubicación inicial del producto: ");
+        System.out.println(tienda.getUbicacion());
+        System.out.print("Ubicación final del producto: ");
+        System.out.println(tienda.getCola().accederUbicacion());
+
+        //Ejecutar el algoritmo de Dijkstra
+        grafo.algoritmoDijkstra(tienda.getUbicacion(), distancias, predecesores);
+
+        //Obtener el camino más corto
+        List<String> camino = grafo.reconstruirCamino(tienda.getUbicacion(), tienda.getCola().accederUbicacion(), predecesores);
+        System.out.println("Camino más corto: " + camino);
+
+        //Obtener la distancia total al camino más corto
+        System.out.println("Distancia: " + distancias.get(tienda.getCola().accederUbicacion()) + " km\n");
+    }
+
     public static void atenderCliente(Tienda tienda) {
         System.out.print("Atendiendo al cliente: ");
-        System.out.println(tienda.getCola().accederCliente());
+        System.out.println(tienda.getCola().accederCliente() + "\n");
 
         Cliente cliente = tienda.getCola().retornarCliente();
 
+        //Imprimir factura
         cliente.facturar();
     }
 
@@ -207,8 +207,31 @@ public class Main {
         //Inicializar tienda
         Tienda miTienda = new Tienda();
 
+        //Insertar productos al inventario
+        miTienda.getInventario().insertar("Sgt. Pepper's Lonely Hearts Club Band", 10077.1f, "Rock", "1967", 10);
+        miTienda.getInventario().insertar("Thriller", 19635.0f, "Pop", "1982", 15);
+        miTienda.getInventario().insertar("Nevermind", 7052.5f, "Grunge", "1991", 20);
+        miTienda.getInventario().insertar("The Number of the Beast", 5500.9f, "Metal", "1982", 5);
+        miTienda.getInventario().insertar("Kind of Blue", 3000.7f, "Jazz", "1959", 35);
+
         //Inicializar grafo
         Grafo miGrafo = new Grafo();
+
+        //Agregar vértices
+        miGrafo.agregarVertice("San José");
+        miGrafo.agregarVertice("Alajuela");
+        miGrafo.agregarVertice("Cartago");
+        miGrafo.agregarVertice("Heredia");
+        miGrafo.agregarVertice("Guanacaste");
+
+        //Agregar aristas
+        miGrafo.agregarArista("San José", "Alajuela", 17);
+        miGrafo.agregarArista("San José", "Cartago", 40);
+        miGrafo.agregarArista("Alajuela", "Cartago", 60);
+        miGrafo.agregarArista("Alajuela", "Heredia", 10);
+        miGrafo.agregarArista("Cartago", "Heredia", 49);
+        miGrafo.agregarArista("Cartago", "Guanacaste", 197);
+        miGrafo.agregarArista("Heredia", "Guanacaste", 147);
 
         //Definir ubicación de la tienda
         miTienda.setUbicacion("San José");

@@ -29,10 +29,18 @@ public class ColaPrioridad {
         cola.remove(cliente);
     }
 
-    //Acceder al siguiente cliente en la cola a ser atendido
+    //Acceder al nombre del siguiente cliente en la cola a ser atendido
     public String accederCliente() {
         if (cola.peek() != null) {
             return cola.peek().getNombre();
+        } else
+            return "No hay clientes en la cola.";
+    }
+
+    //Acceder a la ubicacion del siguiente cliente en la cola a ser atendido
+    public String accederUbicacion() {
+        if (cola.peek() != null) {
+            return cola.peek().getUbicacion();
         } else
             return "No hay clientes en la cola.";
     }
