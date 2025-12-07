@@ -31,6 +31,433 @@ El presente trabajo consiste en el desarrollo de una aplicación para la gestió
 - [x] Se debe tener una lógica de verificación, a la hora de atender al siguiente **Cliente** de la cola, de modo que dicha operación no sea posible si la **ubicación** del **Cliente** (la cuál se debe agregar como vértice al **Grafo** de forma automática cuando éste es insertado en la **ColaClientes**) está desconectada del resto de la estructura.
 
 ## Casos de prueba
+### Flujo 1. Insertar un cliente a una cola vacía y concretar la compra asociada al único cliente en la cola
+#### Paso 1. Visualizar el estado inicial del sistema
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado inicial de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 35       | 105024.5   |
+| Nevermind                                | 7052.5     | 20       | 141050.0   |
+| The Number of the Beast                  | 5500.9     | 5        | 27504.5    |
+| Thriller                                 | 19635.0    | 15       | 294525.0   |
+| Sgt. Pepper's Lonely Hearts Club Band    | 10077.1    | 10       | 100771.0   |
++------------------------------------------+------------+----------+------------+
+
+Punto de partida de los productos: San José
+
+Clientes en espera: []
+Siguiente cliente a ser atendido: No hay clientes en la cola.
+```
+El usuario selecciona la opción 7 del menú con el fin de visualizar las rutas de entrega disponibles.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 7
+```
+```
+San José -> Alajuela Cartago 
+Alajuela -> San José Cartago Heredia 
+Guanacaste -> Cartago Heredia 
+Heredia -> Alajuela Cartago Guanacaste 
+Cartago -> San José Alajuela Heredia Guanacaste 
+```
+Se confirma que hay productos en inventario y distintas rutas almacenadas en el sistema.
+
+#### Paso 2. Inserción de un cliente en la cola
+El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al cliente, así como el producto que se desea comprar.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 2
+```
+```
+Ingrese el nombre del cliente: Roberto Vargas
+Ingrese el número de cédula del cliente: 113090279
+Ingrese la ubicación del cliente: Heredia
+Ingrese la prioridad del cliente [1/2/3]: 1
+Ingrese el nombre de álbum que desea agregar al carrito: Kind of Blue
+Ingrese la cantidad de álbumes que desea adquirir: 2
+¿Desea agregar otro producto a su carrito de compras? [si/no] no
+```
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado actual de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 33       | 99023.1    |
+| Nevermind                                | 7052.5     | 20       | 141050.0   |
+| The Number of the Beast                  | 5500.9     | 5        | 27504.5    |
+| Thriller                                 | 19635.0    | 15       | 294525.0   |
+| Sgt. Pepper's Lonely Hearts Club Band    | 10077.1    | 10       | 100771.0   |
++------------------------------------------+------------+----------+------------+
+
+Punto de partida de los productos: San José
+
+Clientes en espera: [
+Nombre completo: Roberto Vargas, Número de cédula: 113090279, Ubicación: Heredia, Prioridad: 1]
+Siguiente cliente a ser atendido: Roberto Vargas
+```
+Se confirma que el inventario muestra el nombre producto, acompañado de su precio unitario, su cantidad disponible actualizada y el monto total actualizado asociado a dicha cantidad de productos.
+Además se muestra que hay un cliente en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad.
+
+#### Paso 3. Atención del cliente en la cola
+El usuario selecciona la opción 3 del menú con el fin de concretar la compra y desplegar la factura correspondiente.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 0] Salir
+
+Seleccione una opción del menú: 3
+```
+```
+ --- Datos de la entrega ---
+Ubicación inicial del producto: San José
+Ubicación final del producto: Heredia
+Camino más corto: [San José, Alajuela, Heredia]
+Distancia: 27 km
+
+Atendiendo al cliente: Roberto Vargas
+
++------------------------------------------+------------+----------+------------+
+| Factura                                  |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 2        | 6001.4     |
++------------------------------------------+------------+----------+------------+
+|                                          |            |          | 6001.4     |
++------------------------------------------+------------+----------+------------+
+```
+Se confirma que aparecen los datos de la entrega, mostrando el camino más corto y las distancia asociada.
+Además, la factura muestra el nombre producto, acompañado de su precio unitario, y el monto total de la compra.
+
+#### Paso 4. Cerrar el programa
+El usuario selecciona la opción 0 del menú con el fin de cerrar el programa.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 0
+```
+```
+Cerrando el programa...
+```
+### Flujo 2. Insertar un cliente a una cola vacía, con ubicación no disponible en la ruta de entregas, y concretar la compra asociada al único cliente en la cola
+#### Paso 1. Visualizar el estado inicial del sistema
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado inicial de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 35       | 105024.5   |
+| Nevermind                                | 7052.5     | 20       | 141050.0   |
+| The Number of the Beast                  | 5500.9     | 5        | 27504.5    |
+| Thriller                                 | 19635.0    | 15       | 294525.0   |
+| Sgt. Pepper's Lonely Hearts Club Band    | 10077.1    | 10       | 100771.0   |
++------------------------------------------+------------+----------+------------+
+
+Punto de partida de los productos: San José
+
+Clientes en espera: []
+Siguiente cliente a ser atendido: No hay clientes en la cola.
+```
+El usuario selecciona la opción 7 del menú con el fin de visualizar las rutas de entrega disponibles.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 7
+```
+```
+San José -> Alajuela Cartago 
+Alajuela -> San José Cartago Heredia 
+Guanacaste -> Cartago Heredia 
+Heredia -> Alajuela Cartago Guanacaste 
+Cartago -> San José Alajuela Heredia Guanacaste 
+```
+Se confirma que hay productos en inventario y distintas rutas almacenadas en el sistema.
+
+#### Paso 2. Inserción de un cliente en la cola
+El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al cliente, así como el producto que se desea comprar.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 2
+```
+```
+Ingrese el nombre del cliente: Roberto Vargas
+Ingrese el número de cédula del cliente: 113090279
+Ingrese la ubicación del cliente: Puntarenas
+```
+```
+La ubicación ingresada no es parte de nuestra ruta de entregas.
+Favor contactar al administrador para evaluar la posibilidad de agregar una ruta hacia su ubicación.
+```
+Se confirma que la transacción no puede proceder debido a que la ubicación suministrada por el cliente no está en la ruta de entregas. Se le insta al cliente a solicitarle al administrador que evalúe la posibilidad de ingresar una ruta a su ubicación.
+
+#### Paso 3. Visualizar las ubicaciones actualizadas
+El usuario selecciona la opción 7 del menú con el fin de visualizar las rutas de entrega disponibles.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 7
+```
+```
+San José -> Alajuela Cartago 
+Alajuela -> San José Cartago Heredia 
+Guanacaste -> Cartago Heredia 
+Heredia -> Alajuela Cartago Guanacaste 
+Cartago -> San José Alajuela Heredia Guanacaste 
+Puntarenas -> 
+```
+Se confirma que aparece la nueva ubicación de "Puntarenas", pero sin rutas asociadas que permitan la entrega de los productos.
+
+#### Paso 4. Agregar un camino hacia la ubicación del cliente
+El usuario selecciona la opción 6 del menú con el fin de ingresar una ruta desde una ubicación dentro de la ruta, hacia "Puntarenas".
+```
+Ingrese el nombre de la ubicación origen: Alajuela
+Ingrese el nombre de la ubicación destino: Puntarenas
+Ingrese la distancia entre ambas ubicaciones: 69
+```
+
+#### Paso 5. Visualizar las ubicaciones actualizadas
+El usuario selecciona la opción 7 del menú con el fin de visualizar las rutas de entrega disponibles.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 7
+```
+```
+San José -> Alajuela Cartago 
+Alajuela -> San José Cartago Heredia Puntarenas 
+Guanacaste -> Cartago Heredia 
+Heredia -> Alajuela Cartago Guanacaste 
+Cartago -> San José Alajuela Heredia Guanacaste 
+Puntarenas -> Alajuela 
+```
+Se confirma que ahora hay una conexión entre "Alajuela" y "Puntarenas".
+
+#### Paso 6. Inserción de un cliente en la cola
+El usuario selecciona la opción 2 del menú con el fin de ingresar los datos asociados al cliente, así como el producto que se desea comprar.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 2
+```
+```
+Ingrese el nombre del cliente: Roberto Vargas
+Ingrese el número de cédula del cliente: 113090279
+Ingrese la ubicación del cliente: Puntarenas
+Ingrese la prioridad del cliente [1/2/3]: 1
+Ingrese el nombre de álbum que desea agregar al carrito: Kind of Blue
+Ingrese la cantidad de álbumes que desea adquirir: 5
+¿Desea agregar otro producto a su carrito de compras? [si/no] no
+```
+El usuario selecciona la opción 4 del menú con el fin de visualizar el estado actual de la tienda.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 4
+```
+```
++------------------------------------------+------------+----------+------------+
+| Inventario                               |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 30       | 90021.0    |
+| Nevermind                                | 7052.5     | 20       | 141050.0   |
+| The Number of the Beast                  | 5500.9     | 5        | 27504.5    |
+| Thriller                                 | 19635.0    | 15       | 294525.0   |
+| Sgt. Pepper's Lonely Hearts Club Band    | 10077.1    | 10       | 100771.0   |
++------------------------------------------+------------+----------+------------+
+
+Punto de partida de los productos: San José
+
+Clientes en espera: [
+Nombre completo: Roberto Vargas, Número de cédula: 113090279, Ubicación: Puntarenas, Prioridad: 1]
+Siguiente cliente a ser atendido: Roberto Vargas
+```
+Se confirma que el inventario muestra el nombre producto, acompañado de su precio unitario, su cantidad disponible actualizada y el monto total actualizado asociado a dicha cantidad de productos.
+Además se muestra que hay un cliente en la cola, y el siguiente cliente que debe ser atendido, basado en la prioridad.
+
+#### Paso 7. Atención del cliente en la cola
+El usuario selecciona la opción 3 del menú con el fin de concretar la compra y desplegar la factura correspondiente.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 3
+```
+```
+ --- Datos de la entrega ---
+Ubicación inicial del producto: San José
+Ubicación final del producto: Puntarenas
+Camino más corto: [San José, Alajuela, Puntarenas]
+Distancia: 86 km
+
+Atendiendo al cliente: Roberto Vargas
+
++------------------------------------------+------------+----------+------------+
+| Factura                                  |            |          |            |
++------------------------------------------+------------+----------+------------+
+| Título                                   | Precio     | Cantidad | Total      |
++------------------------------------------+------------+----------+------------+
+| Kind of Blue                             | 3000.7     | 5        | 15003.5    |
++------------------------------------------+------------+----------+------------+
+|                                          |            |          | 15003.5    |
++------------------------------------------+------------+----------+------------+
+```
+Se confirma que aparecen los datos de la entrega, mostrando el camino más corto y las distancia asociada.
+Además, la factura muestra el nombre producto, acompañado de su precio unitario, y el monto total de la compra.
+
+#### Paso 8. Cerrar el programa
+El usuario selecciona la opción 0 del menú con el fin de cerrar el programa.
+```
+ --- Menú principal ---
+[ 1] Insertar producto al inventario
+[ 2] Insertar cliente a la cola
+[ 3] Atender cliente
+[ 4] Imprimir estado de la tienda
+[ 5] Insertar ubicación
+[ 6] Insertar camino entre dos ubicaciones
+[ 7] Imprimir rutas
+[ 0] Salir
+
+Seleccione una opción del menú: 0
+```
+```
+Cerrando el programa...
+```
+
+## Casos de prueba (Primer & Segundo avance)
 ### Flujo 1. Insertar un producto a un inventario vacío, insertar un cliente a la cola y concretar la compra asociada al único cliente en la cola
 #### Paso 1. Visualizar del estado inicial del sistema
 El usuario selecciona la opción 4 del menú con el fin de visualizar el estado inicial de la tienda.
