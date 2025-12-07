@@ -42,7 +42,7 @@ public class Main {
                 insertarProducto(tienda);
                 break;
             case 2:
-                insertarCliente(tienda);
+                insertarCliente(tienda, grafo);
                 break;
             case 3:
                 calcularRuta(tienda, grafo);
@@ -92,7 +92,7 @@ public class Main {
         tienda.getInventario().insertar(titulo, precio,genero, fechaLanzamiento, cantidad);
     }
 
-    public static void insertarCliente(Tienda tienda) throws Exception {
+    public static void insertarCliente(Tienda tienda, Grafo grafo) throws Exception {
         String nombre;
         String cedula;
         String ubicacion;
@@ -110,6 +110,15 @@ public class Main {
         cedula = leerTexto();
         System.out.print("Ingrese la ubicación del cliente: ");
         ubicacion = leerTexto();
+
+        //Verificar si el punto de entrega existe en la ruta
+        if (!grafo.existeVertice(ubicacion)) {
+            System.out.println("La ubicación ingresada no es parte de nuestra ruta de entregas.");
+            System.out.println("Favor contactar al administrador para evaluar la posibilidad de agregar una ruta hacia su ubicación.");
+            grafo.agregarVertice(ubicacion);
+            return;
+        }
+
         System.out.print("Ingrese la prioridad del cliente [1/2/3]: ");
         prioridad = Integer.parseInt(leerTexto());
 

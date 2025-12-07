@@ -80,4 +80,8 @@ public class Grafo {
 
         return new ArrayList<>();
     }
+
+    public boolean existeVertice(String vertice) {
+        return listaAdyacencia.containsKey(vertice);
+    }
 }
